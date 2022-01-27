@@ -1803,6 +1803,9 @@ class Client(BaseClient):
         """
         return self._get('order', True, data=params)
 
+    def get_oco_order(self, **params):
+        return self._get('orderList', True, data=params)
+
     def get_all_orders(self, **params):
         """Get all account orders; active, canceled, or filled.
 
@@ -7577,6 +7580,10 @@ class AsyncClient(BaseClient):
         return await self._get('order', True, data=params)
     get_order.__doc__ = Client.get_order.__doc__
 
+    async def get_oco_order(self, **params):
+        return await self._get('orderList', True, data=params)
+    get_oco_order.__doc__ = Client.get_order.__doc__
+
     async def get_all_orders(self, **params):
         return await self._get('allOrders', True, data=params)
     get_all_orders.__doc__ = Client.get_all_orders.__doc__
@@ -7584,6 +7591,10 @@ class AsyncClient(BaseClient):
     async def cancel_order(self, **params):
         return await self._delete('order', True, data=params)
     cancel_order.__doc__ = Client.cancel_order.__doc__
+
+    async def cancel_oco_order(self, **params):
+        return await self._delete('orderList', True, data=params)
+    cancel_oco_order.__doc__ = Client.cancel_order.__doc__
 
     async def get_open_orders(self, **params):
         return await self._get('openOrders', True, data=params)
